@@ -124,17 +124,43 @@ class LinkedList {
 
     // return the length/number of nodes of the linked list
     length() {
-        
+        let nodes = 0;
+
+        let thead = this.head;
+        while (thead != null) {
+            nodes++;
+            thead = thead.next;
+        }
+
+        return nodes;
     }
 
     // deletes the head node of the linked list
     deleteHead() {
-        
+        this.head = this.head.next;
     }
 
     // deletes the tail node of the linked list
     deleteTail() {
         
+        if (this.head == null) {
+            // linked list is empty
+            return;
+        } else {
+            // linked list is not empty
+            // find the tail node
+            let tail = this.head;
+
+            while (tail.next.next != null) {
+                tail = tail.next;
+            }
+
+            // when we come out of the loop
+            // tail.next will be null
+            // if the tail.next is null
+            // it means that the tail is pointing to the tail node
+            tail.next = null;
+        }
     }
 }
 
@@ -193,5 +219,9 @@ list.insertTail(7);
 list.insertTail(8);
 list.insertHead(2);
 list.insertHead(1);
+list.deleteHead();
+list.deleteHead();
+list.deleteTail();
 
 list.printList();
+console.log('length:', list.length());
